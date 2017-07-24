@@ -1,0 +1,68 @@
+html {
+  background-color: black;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: white;
+}
+
+#timeArea p {
+  margin: 0;
+}
+
+/**** Weather Area *****/
+#currentLocation {
+  font-size: 19px;
+  margin: 10px 0 2px 8px;
+  padding: 0;
+}
+
+#currentTemp {
+  font-size: 64px;
+  margin: 0px 0 2px 4px;
+  padding: 0;
+}
+
+#currentWeatherState {
+  font-size: 36px;
+  margin: 0px 0 4px 4px;
+  padding: 0;
+}
+
+#todaysHighLow {
+  font-size: 28px;
+  margin: 6px 0 2px 4px;
+  padding: 0;
+}
+
+#forecastArea p {
+  margin: 1px 0 4px 4px;
+  font-size: 19px;
+}
+
+/*** News Area  ***/
+#newsArea {
+  max-width: 850px !important;
+  position: fixed;
+  bottom: 0;
+  left: 1;
+  
+}
+
+#newsArea div {
+  margin-top: 2px;
+}
+
+#newsArea h2 {
+  font-weight: 300;
+  margin: 2px 0 4px 4px; 
+  font-size: 26px;
+}
+
+#newsArea p {
+  font-weight: 300;
+  margin: 2px 0 6px 32px; 
+  font-size: 17px;
+}
