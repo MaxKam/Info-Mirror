@@ -6,8 +6,8 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 CORS(app)
 
-WEATHER_API_KEY = '' #Paste an API key from a weather service
-NEWS_API_KEY = '' #Paste an API key from a news service
+WEATHER_API_KEY = '' #Paste an API key from Weather Underground
+NEWS_API_KEY = '' #Paste an API key from News API
 
 @app.route("/")
 def index():
