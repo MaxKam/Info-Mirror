@@ -9,6 +9,3 @@ As for the weather info I'm using the [Weather Underground API](https://www.wund
 I'm using the free tier for both API's. 
 
 This is very much a work in progress. Code needs a lot of cleanup and I will be adding more functionality soon.
-
-Current plan is to take care of parsing API response on the server side in Python, instead of client side.
-Then just send a view to the client. 
