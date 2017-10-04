@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
-from getWeather import getWeather
-from getNews import getTopNews
+from getWeather import WeatherData
+from getNews import NewsData
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -11,6 +11,7 @@ NEWS_API_KEY = '' #Paste an API key from a news service
 ZIP_CODE = '' #Paste the zip code for weather data
 
 currentWeather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
+currentNews = NewsData(NEWS_API_KEY)
 
 @app.route("/")
 def index():
@@ -23,8 +24,7 @@ def weather():
 
 @app.route("/news")
 def TOP_NEWS():
-    newsReply = getTopNews(NEWS_API_KEY)
-    return jsonify(newsReply)
+    return jsonify(currentNews.getNews())
 
 
 if __name__ == "__main__":
