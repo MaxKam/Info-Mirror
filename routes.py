@@ -8,6 +8,9 @@ CORS(app)
 
 WEATHER_API_KEY = '' #Paste an API key from a weather service
 NEWS_API_KEY = '' #Paste an API key from a news service
+ZIP_CODE = '' #Paste the zip code for weather data
+
+currentWeather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
 
 @app.route("/")
 def index():
@@ -16,8 +19,7 @@ def index():
 
 @app.route("/weather")
 def weather():
-    fullWeatherReply = getWeather(WEATHER_API_KEY)
-    return jsonify(fullWeatherReply)
+    return jsonify(currentWeather.getWeather())
 
 @app.route("/news")
 def TOP_NEWS():
