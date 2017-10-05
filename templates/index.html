@@ -38,7 +38,7 @@
     </div>
 
     <script>
-       function updateTime(){
+  function updateTime(){
   var time = new Date ( );
 
   var currentHours = time.getHours ( );
@@ -46,19 +46,14 @@
 
   // Pad the minutes and seconds with leading zeros, if required
   currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-
   // Choose either "AM" or "PM" as appropriate
   var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
-
   // Convert the hours component to 12-hour format if needed
   currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-
   // Convert an hours component of "0" to "12"
   currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-
   // Compose the string for display
   var currentTimeString = currentHours + ":" + currentMinutes + ' ' + timeOfDay;
-
   // Update the time display
   document.getElementById("time").innerHTML = currentTimeString;
 
@@ -75,69 +70,71 @@ function updateDate() {
 }
 
 
-
 function loadWeather() {
-  currentWeatherDiv = document.getElementById("currentWeather");
-  forecastDiv = document.getElementById("forecastArea");
-
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-       var currentInfo = JSON.parse(this.responseText);
-
-       //Set variables for Current Weather
-       var currentTemp = currentInfo[0][0].current_observation.temp_f;
-       //var currentIcon = currentInfo[0][0].current_observation.icon_url;
-       var currentWeatherState = currentInfo[0][0].current_observation.weather;
-       var currentLocation = currentInfo[0][0].current_observation.display_location.full;
-       var todaysHighLow = '&uarr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].high.fahrenheit + '&#176; ' + ' | ' + ' &darr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].low.fahrenheit + '&#176; ';
-       
-       //Update Current Weather
-       currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
-       currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentTemp">' + currentTemp + '&#176; </p>');
-       currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentWeatherState">' + currentWeatherState + '</p>');
-       currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
-      
-      //Set Variables for Forecast
-      
-      var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].conditions, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
-      var oneDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[2].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[2].conditions, currentInfo[1].forecast.simpleforecast.forecastday[2].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[2].low.fahrenheit]
-      var twoDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[3].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[3].conditions, currentInfo[1].forecast.simpleforecast.forecastday[3].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[3].low.fahrenheit]
-
-      //Update Forecast 
-      forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + tomorrowsWeather[1]  + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
-      forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + oneDayAfterWeather[1]  + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
-      forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + twoDayAfterWeather[1]  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
-    
+          tempData = JSON.parse(this.responseText);
+          displayWeather(tempData);
       }
     };
-
   xhttp.open("GET", "http://127.0.0.1:5000/weather", true);
   xhttp.send();
 }
 
-function loadNews() {
-  newsDiv = document.getElementById("newsArea");
-  newsDiv.innerHTML = '';
+function displayWeather(currentInfo) {
+        currentWeatherDiv = document.getElementById("currentWeather");
+        forecastDiv = document.getElementById("forecastArea");
+  
+         //Set variables for Current Weather
+         var currentTemp = currentInfo[0][0].current_observation.temp_f;
+         //var currentIcon = currentInfo[0][0].current_observation.icon_url;
+         var currentWeatherState = currentInfo[0][0].current_observation.weather;
+         var currentLocation = currentInfo[0][0].current_observation.display_location.full;
+         var todaysHighLow = '&uarr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].high.fahrenheit + '&#176; ' + ' | ' + ' &darr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].low.fahrenheit + '&#176; ';
+         
+         //Update Current Weather
+         currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
+         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentTemp">' + currentTemp + '&#176; </p>');
+         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentWeatherState">' + currentWeatherState + '</p>');
+         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
+        
+        //Set Variables for Forecast
+        
+        var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].conditions, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
+        var oneDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[2].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[2].conditions, currentInfo[1].forecast.simpleforecast.forecastday[2].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[2].low.fahrenheit]
+        var twoDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[3].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[3].conditions, currentInfo[1].forecast.simpleforecast.forecastday[3].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[3].low.fahrenheit]
+  
+        //Update Forecast 
+        forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + tomorrowsWeather[1]  + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
+        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + oneDayAfterWeather[1]  + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
+        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + twoDayAfterWeather[1]  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
+      
+}
 
+function loadNews() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-      var currentInfo = JSON.parse(this.responseText);
-
-      
-
-      for (var j = 0; j < 5; j++) {
-          var currentNewsStory = [currentInfo[0].articles[j].title, currentInfo[0].articles[j].description];
-
-          newsDiv.insertAdjacentHTML('beforeend', '<div><h2>' + (j + 1) + '. ' + currentNewsStory[0] + '</h2>' + '<p>' + currentNewsStory[1] + '</p></div>')
-      }
+      var tempData = JSON.parse(this.responseText);
+      displayNews(tempData);
 
       }
     };
 
   xhttp.open("GET", "http://127.0.0.1:5000/news", true);
   xhttp.send();
+}
+
+function displayNews(currentInfo) {
+      newsDiv = document.getElementById("newsArea");
+      newsDiv.innerHTML = '';
+
+      for (var j = 0; j < 5; j++) {
+        var currentNewsStory = [currentInfo[0].articles[j].title, currentInfo[0].articles[j].description];
+
+        newsDiv.insertAdjacentHTML('beforeend', '<div><h2>' + (j + 1) + '. ' + currentNewsStory[0] + '</h2>' + '<p>' + currentNewsStory[1] + '</p></div>')
+    }
 }
 
 updateTime();
@@ -151,12 +148,6 @@ setInterval(loadWeather, 600000);
 
 loadNews();
 setInterval(loadNews, 900000);
-
-
-
     </script>
-
-   
-
   </body>
 </html>
