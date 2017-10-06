@@ -8,7 +8,7 @@ CORS(app)
 
 WEATHER_API_KEY = '' #Paste an API key from a weather service
 NEWS_API_KEY = '' #Paste an API key from a news service
-ZIP_CODE = '' #Paste the zip code for weather data
+ZIP_CODE = '' #Paste your zip code for weather data
 
 currentWeather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
 currentNews = NewsData(NEWS_API_KEY)
