@@ -7,5 +7,3 @@ I'm using the [News API](https://newsapi.org/google-news-api), mainly to get the
 As for the weather info I'm using the [Weather Underground API](https://www.wunderground.com/weather/api/).
 
 I'm using the free tier for both API's. 
-
-This is very much a work in progress. Code needs a lot of cleanup and I will be adding more functionality soon.
