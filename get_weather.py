@@ -6,21 +6,21 @@ class WeatherData:
         self.api_key = api_key
         self.zip_code = zip_code
 
-    def getWeather(self):
-        weatherReply = []
-        weatherReply = [self.getCurrentConditions()]
-        weatherReply.extend(self.getForecast())
-        return weatherReply
+    def get_weather(self):
+        weather_reply = []
+        weather_reply = [self.get_current_conditions()]
+        weather_reply.extend(self.get_forecast())
+        return weather_reply
 
-    def getCurrentConditions(self):
+    def get_current_conditions(self):
         r = requests.get('http://api.wunderground.com/api/%s/conditions/q/%s.json' % (self.api_key, self.zip_code))
         r = r.json()
-        conditionsReply = [r]
-        return conditionsReply
+        conditions_reply = [r]
+        return conditions_reply
 
 
-    def getForecast(self):
+    def get_forecast(self):
         r = requests.get('http://api.wunderground.com/api/%s/forecast/q/%s.json' % (self.api_key, self.zip_code))
         r = r.json()
-        forecastReply = [r]
-        return forecastReply
+        forecast_reply = [r]
+        return forecast_reply

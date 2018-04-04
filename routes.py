@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from configparser import ConfigParser
-from getWeather import WeatherData
+from get_weather import WeatherData
 from get_news import NewsData
 from flask_cors import CORS, cross_origin
 
@@ -14,7 +14,7 @@ WEATHER_API_KEY = config.get("APP_SETTINGS", "weather_api_key")
 NEWS_API_KEY = config.get("APP_SETTINGS", "news_api_key")
 ZIP_CODE = config.get("APP_SETTINGS", "zip_code")
 
-currentWeather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
+current_weather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
 current_news = NewsData(NEWS_API_KEY)
 
 @app.route("/")
@@ -23,7 +23,7 @@ def index():
 
 @app.route("/weather")
 def weather():
-    return jsonify(currentWeather.getWeather())
+    return jsonify(current_weather.get_weather())
 
 @app.route("/news")
 def TOP_NEWS():
