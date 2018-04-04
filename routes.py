@@ -1,14 +1,18 @@
 from flask import Flask, render_template, jsonify
+from configparser import ConfigParser
 from getWeather import WeatherData
 from getNews import NewsData
 from flask_cors import CORS, cross_origin
 
+config = ConfigParser()
+config.read("./app_config.ini")
+
 app = Flask(__name__)
 CORS(app)
 
-WEATHER_API_KEY = '' #Paste an API key from a weather service
-NEWS_API_KEY = '' #Paste an API key from a news service
-ZIP_CODE = '' #Paste your zip code for weather data
+WEATHER_API_KEY = config.get("APP_SETTINGS", "weather_api_key")
+NEWS_API_KEY = config.get("APP_SETTINGS", "news_api_key")
+ZIP_CODE = config.get("APP_SETTINGS", "zip_code")
 
 currentWeather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
 currentNews = NewsData(NEWS_API_KEY)
