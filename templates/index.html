@@ -9,7 +9,9 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+    <link href="../static/icons/wu-icons-style.min.css" rel="stylesheet">
     <link href="../static/styles.css" rel="stylesheet">
+    
 
 
   </head>
@@ -88,27 +90,25 @@ function displayWeather(currentInfo) {
   
          //Set variables for Current Weather
          var currentTemp = currentInfo[0][0].current_observation.temp_f;
-         //var currentIcon = currentInfo[0][0].current_observation.icon_url;
-         var currentWeatherState = currentInfo[0][0].current_observation.weather;
+         var currentWeathericon = currentInfo[0][0].current_observation.icon;
          var currentLocation = currentInfo[0][0].current_observation.display_location.full;
          var todaysHighLow = '&uarr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].high.fahrenheit + '&#176; ' + ' | ' + ' &darr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].low.fahrenheit + '&#176; ';
          
          //Update Current Weather
          currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
-         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentTemp">' + currentTemp + '&#176; </p>');
-         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentWeatherState">' + currentWeatherState + '</p>');
+         currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176; </p>&nbsp;&nbsp;<i style="display:inline-block;" class="wu wu-white wu-128 wu-' + currentWeathericon + '"></i></div>');
          currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
         
         //Set Variables for Forecast
         
-        var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].conditions, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
-        var oneDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[2].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[2].conditions, currentInfo[1].forecast.simpleforecast.forecastday[2].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[2].low.fahrenheit]
-        var twoDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[3].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[3].conditions, currentInfo[1].forecast.simpleforecast.forecastday[3].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[3].low.fahrenheit]
+        var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].icon, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
+        var oneDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[2].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[2].icon, currentInfo[1].forecast.simpleforecast.forecastday[2].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[2].low.fahrenheit]
+        var twoDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[3].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[3].icon, currentInfo[1].forecast.simpleforecast.forecastday[3].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[3].low.fahrenheit]
   
         //Update Forecast 
-        forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + tomorrowsWeather[1]  + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
-        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + oneDayAfterWeather[1]  + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
-        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + twoDayAfterWeather[1]  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
+        forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-64 wu-' + tomorrowsWeather[1] + '"></i>' + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
+        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-64 wu-' + oneDayAfterWeather[1] + '"></i>'  + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
+        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-64 wu-' + twoDayAfterWeather[1] + '"></i>'  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
       
 }
 
