@@ -96,7 +96,7 @@ function displayWeather(currentInfo) {
          
          //Update Current Weather
          currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
-         currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176; </p>&nbsp;&nbsp;<i style="display:inline-block;" class="wu wu-white wu-128 wu-' + currentWeathericon + '"></i></div>');
+         currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;<i style="display:inline-block;" class="wu wu-white wu-128 wu-' + currentWeathericon + '"></i></div>');
          currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
         
         //Set Variables for Forecast
