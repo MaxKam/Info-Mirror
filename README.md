@@ -4,6 +4,6 @@ Inspired by [MagicMirror2](https://github.com/MichMich/MagicMirror) and [Smart-M
 
 I'm using the [News API](https://newsapi.org/google-news-api), mainly to get the Google News top stories section. 
 
-As for the weather info I'm using the [Weather Underground API](https://www.wunderground.com/weather/api/).
+As for the weather info I'm using the [Weather Underground API](https://www.wunderground.com/weather/api/). Replaced standard icons from Weather Underground with [these icons](https://github.com/manifestinteractive/weather-underground-icons).
 
 I'm using the free tier for both API's. 
