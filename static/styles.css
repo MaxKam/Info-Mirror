@@ -42,6 +42,10 @@ body {
   font-size: 19px;
 }
 
+sup {
+  font-size: 60%;
+}
+
 /*** News Area  ***/
 #newsArea {
   max-width: 850px !important;
