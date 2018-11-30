@@ -12,10 +12,11 @@ CORS(app)
 
 WEATHER_API_KEY = config.get("APP_SETTINGS", "weather_api_key")
 NEWS_API_KEY = config.get("APP_SETTINGS", "news_api_key")
+NEWS_API_URL = config.get("APP_SETTINGS", "news_api_url")
 ZIP_CODE = config.get("APP_SETTINGS", "zip_code")
 
 current_weather = WeatherData(WEATHER_API_KEY, ZIP_CODE)
-current_news = NewsData(NEWS_API_KEY)
+current_news = NewsData(NEWS_API_KEY, NEWS_API_URL)
 
 @app.route("/")
 def index():
