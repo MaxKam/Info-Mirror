@@ -89,14 +89,14 @@ function displayWeather(currentInfo) {
         forecastDiv = document.getElementById("forecastArea");
   
          //Set variables for Current Weather
-         var currentTemp = currentInfo[0][0].current_observation.temp_f;
-         var currentWeathericon = currentInfo[0][0].current_observation.icon;
-         var currentLocation = currentInfo[0][0].current_observation.display_location.full;
-         var todaysHighLow = '&uarr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].high.fahrenheit + '&#176; ' + ' | ' + ' &darr; ' + currentInfo[1].forecast.simpleforecast.forecastday[0].low.fahrenheit + '&#176; ';
+         var currentTemp = currentInfo[0].temp;
+         var currentWeathericon = currentInfo[0].icon;
+         var currentLocation = currentInfo[0].location;
+         var todaysHighLow = '&uarr; ' + currentInfo[0].temp_max + '&#176; ' + ' | ' + ' &darr; ' + currentInfo[0].temp_min + '&#176; ';
          
          //Update Current Weather
          currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
-         currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;<i style="display:inline-block;" class="wu wu-white wu-64 wu-' + currentWeathericon + '"></i></div>');
+         currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;<img style="display:inline-block;" src="http://openweathermap.org/img/w/' + currentWeathericon + '.png" height="60" width="60" /></div>');
          currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
         
         //Set Variables for Forecast
