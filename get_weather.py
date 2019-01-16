@@ -6,7 +6,7 @@ class WeatherData:
         self.api_key = api_key
         self.zip_code = zip_code
         self.temp_format = temp_format
-        self.current_data_url = 'https://api.openweathermap.org/data/2.5/weather?zip=%s&units=%s&appid=%s' \
+        self.current_conditions_url = 'https://api.openweathermap.org/data/2.5/weather?zip=%s&units=%s&appid=%s' \
             % (self.zip_code, self.temp_format, self.api_key)
         self.forecast_url = 'https://api.openweathermap.org/data/2.5/forecast?zip=%s&units=%s&appid=%s' \
             % (self.zip_code, self.temp_format, self.api_key)
@@ -18,10 +18,17 @@ class WeatherData:
         return weather_reply
 
     def get_current_conditions(self):
-        conditions_reply = requests.get(self.current_data_url)
+        conditions_reply = requests.get(self.current_conditions_url)
         if (conditions_reply.status_code == 200):
             conditions_reply = conditions_reply.json()
-            return [conditions_reply]
+
+            conditions_data = {"temp": conditions_reply["main"]["temp"]}
+            conditions_data["temp_min"] = conditions_reply["main"]["temp_min"]
+            conditions_data["temp_max"] = conditions_reply["main"]["temp_max"]
+            conditions_data["location"] = conditions_reply["name"]
+            conditions_data["icon"] = conditions_reply["weather"][0]["icon"]
+
+            return conditions_data
 
 
     def get_forecast(self):
