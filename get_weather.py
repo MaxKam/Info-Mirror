@@ -19,11 +19,13 @@ class WeatherData:
 
     def get_current_conditions(self):
         conditions_reply = requests.get(self.current_data_url)
-        conditions_reply = conditions_reply.json()
-        return [conditions_reply]
+        if (conditions_reply.status_code == 200):
+            conditions_reply = conditions_reply.json()
+            return [conditions_reply]
 
 
     def get_forecast(self):
         forecast_reply = requests.get(self.forecast_url)
-        forecast_reply = forecast_reply.json()
-        return [forecast_reply]
+        if (forecast_reply.status_code == 200):
+            forecast_reply = forecast_reply.json()
+            return [forecast_reply]
