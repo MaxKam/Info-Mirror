@@ -92,16 +92,14 @@ function displayWeather(currentInfo) {
          var currentTemp = currentInfo[0].temp;
          var currentWeathericon = currentInfo[0].icon;
          var currentLocation = currentInfo[0].location;
-         var todaysHighLow = '&uarr; ' + currentInfo[0].temp_max + '&#176; ' + ' | ' + ' &darr; ' + currentInfo[0].temp_min + '&#176; ';
          
          //Update Current Weather
          currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
          currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;<img style="display:inline-block;" src="http://openweathermap.org/img/w/' + currentWeathericon + '.png" height="60" width="60" /></div>');
-         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
         
         //Set Variables for Forecast
         
-        var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].icon, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
+        /* var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].icon, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
         var oneDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[2].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[2].icon, currentInfo[1].forecast.simpleforecast.forecastday[2].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[2].low.fahrenheit]
         var twoDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[3].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[3].icon, currentInfo[1].forecast.simpleforecast.forecastday[3].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[3].low.fahrenheit]
   
@@ -109,7 +107,7 @@ function displayWeather(currentInfo) {
         forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-32 wu-' + tomorrowsWeather[1] + '"></i>' + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
         forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-32 wu-' + oneDayAfterWeather[1] + '"></i>'  + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
         forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-32 wu-' + twoDayAfterWeather[1] + '"></i>'  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
-      
+       */
 }
 
 function loadNews() {

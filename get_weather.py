@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 class WeatherData:
 
@@ -14,7 +15,7 @@ class WeatherData:
     def get_weather(self):
         weather_reply = []
         weather_reply = [self.get_current_conditions()]
-        weather_reply.extend(self.get_forecast())
+        #weather_reply.extend(self.get_forecast())
         return weather_reply
 
     def get_current_conditions(self):
@@ -23,16 +24,16 @@ class WeatherData:
             conditions_reply = conditions_reply.json()
 
             conditions_data = {"temp": conditions_reply["main"]["temp"]}
-            conditions_data["temp_min"] = conditions_reply["main"]["temp_min"]
-            conditions_data["temp_max"] = conditions_reply["main"]["temp_max"]
             conditions_data["location"] = conditions_reply["name"]
             conditions_data["icon"] = conditions_reply["weather"][0]["icon"]
 
             return conditions_data
 
 
-    def get_forecast(self):
+    """ def get_forecast(self):
         forecast_reply = requests.get(self.forecast_url)
         if (forecast_reply.status_code == 200):
             forecast_reply = forecast_reply.json()
-            return [forecast_reply]
+            
+
+            return [forecast_reply] """
