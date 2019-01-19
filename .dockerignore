@@ -1,0 +1,10 @@
+# Exclude everything in project folder
+*
+
+#And now only include the files needed for app to run
+!*.py
+!*.txt
+!README.md
+!./templates/
+!./config/app_config.ini
+!./static/
