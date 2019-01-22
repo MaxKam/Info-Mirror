@@ -79,7 +79,7 @@ function loadWeather() {
           displayWeather(tempData);
       }
     };
-  xhttp.open("GET", "http://127.0.0.1:5000/weather", true);
+  xhttp.open("GET", "/weather", true);
   xhttp.send();
 }
 
@@ -119,7 +119,7 @@ function loadNews() {
       }
     };
 
-  xhttp.open("GET", "http://127.0.0.1:5000/news", true);
+  xhttp.open("GET", "/news", true);
   xhttp.send();
 }
 
