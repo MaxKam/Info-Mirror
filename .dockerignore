@@ -6,5 +6,4 @@
 !*.txt
 !README.md
 !./templates/
-!./config/app_config.ini
 !./static/
