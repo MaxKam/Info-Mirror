@@ -13,10 +13,10 @@ CORS(app)
 WEATHER_API_KEY = config.get("APP_SETTINGS", "weather_api_key")
 NEWS_API_KEY = config.get("APP_SETTINGS", "news_api_key")
 NEWS_API_URL = config.get("APP_SETTINGS", "news_api_url")
-ZIP_CODE = config.get("APP_SETTINGS", "zip_code")
-TEMP_FORMAT = config.get("APP_SETTINGS", "weather_units_format")
+LATITUDE = config.get("APP_SETTINGS", "latitude")
+LONGITUDE = config.get("APP_SETTINGS", "longitude")
 
-current_weather = WeatherData(WEATHER_API_KEY, ZIP_CODE, TEMP_FORMAT)
+current_weather = WeatherData(WEATHER_API_KEY, LATITUDE, LONGITUDE)
 current_news = NewsData(NEWS_API_KEY, NEWS_API_URL)
 
 @app.route("/")
