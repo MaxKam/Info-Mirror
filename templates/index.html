@@ -87,15 +87,19 @@ function displayWeather(currentInfo) {
         currentWeatherDiv = document.getElementById("currentWeather");
         forecastDiv = document.getElementById("forecastArea");
   
-         //Set variables for Current Weather
-         var currentTemp = currentInfo[0].temp;
-         var currentWeathericon = currentInfo[0].icon;
-         var currentLocation = currentInfo[0].location;
-         
-         //Update Current Weather
-         currentWeatherDiv.innerHTML = '<p id="currentLocation">' + currentLocation + '</p>';
-         currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;<img style="display:inline-block;" src="http://openweathermap.org/img/w/' + currentWeathericon + '.png" height="60" width="60" /></div>');
+        //Set variables for Current Weather
+        var currentTemp = parseInt(currentInfo[0].temp);
+        var currentWeathericon = currentInfo[0].icon;
+        var currentSummary = currentInfo[0].summary;
+        var feelsLike = parseInt(currentInfo[0].feels_like);
+        var todaysHighLow = '&uarr; ' + parseInt(currentInfo[1].todays_high) + '&#176; ' + ' | ' + ' &darr; ' + parseInt(currentInfo[1].todays_low) + '&#176; ';
         
+        //Update Current Weather
+        currentWeatherDiv.innerHTML = '<p id="currentSummary"> ' + currentSummary + '</p>';
+        currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;</div>');
+        currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="feelsLike"> Feels like: ' + feelsLike + '&#176;</p>');
+        currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
+ 
         //Set Variables for Forecast
         
         /* var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].icon, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
