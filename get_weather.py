@@ -7,7 +7,7 @@ class WeatherData:
         self.api_key = api_key
         self.latitude = latitude
         self.longitude = longitude
-        self.request_url = 'https://api.darksky.net/forecast/%s/%s,%s?exclude=minutely,flags' \
+        self.request_url = 'https://api.darksky.net/forecast/%s/%s,%s?exclude=minutely,hourly,flags' \
             % (self.api_key, self.latitude, self.longitude )
 
     def get_weather(self):
