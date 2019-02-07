@@ -13,8 +13,8 @@ body {
 }
 
 /**** Weather Area *****/
-#currentLocation {
-  font-size: 19px;
+#currentSummary {
+  font-size: 22px;
   margin: 10px 0 2px 8px;
   padding: 0;
 }
@@ -31,9 +31,15 @@ body {
   padding: 0;
 }
 
+#feelsLike {
+  font-size: 22px;
+  margin: 4px 0 2px 8px;
+  padding: 0;
+}
+
 #todaysHighLow {
   font-size: 28px;
-  margin: 6px 0 2px 4px;
+  margin: 6px 0 2px 6px;
   padding: 0;
 }
 
