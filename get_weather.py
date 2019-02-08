@@ -35,14 +35,20 @@ class WeatherData:
         conditions_data["todays_high"] = raw_data["daily"]["data"][0]["temperatureHigh"]
         conditions_data["todays_low"] = raw_data["daily"]["data"][0]["temperatureLow"]
         
+        forecast_day = datetime.datetime.fromtimestamp(raw_data["daily"]["data"][1]["time"]).strftime('%A')
+        conditions_data["day1_day"] = forecast_day
         conditions_data["day1_icon"] = raw_data["daily"]["data"][1]["icon"]
         conditions_data["day1_high"] = raw_data["daily"]["data"][1]["temperatureHigh"]
         conditions_data["day1_low"] = raw_data["daily"]["data"][1]["temperatureLow"]
 
+        forecast_day = datetime.datetime.fromtimestamp(raw_data["daily"]["data"][2]["time"]).strftime('%A')
+        conditions_data["day2_day"] = forecast_day
         conditions_data["day2_icon"] = raw_data["daily"]["data"][2]["icon"]
         conditions_data["day2_high"] = raw_data["daily"]["data"][2]["temperatureHigh"]
         conditions_data["day2_low"] = raw_data["daily"]["data"][2]["temperatureLow"]
 
+        forecast_day = datetime.datetime.fromtimestamp(raw_data["daily"]["data"][3]["time"]).strftime('%A')
+        conditions_data["day3_day"] = forecast_day
         conditions_data["day3_icon"] = raw_data["daily"]["data"][3]["icon"]
         conditions_data["day3_high"] = raw_data["daily"]["data"][3]["temperatureHigh"]
         conditions_data["day3_low"] = raw_data["daily"]["data"][3]["temperatureLow"]
