@@ -102,19 +102,25 @@ function displayWeather(currentInfo) {
 
         // Add the Current Conditions icon
         skycons.add("icon1", currentWeathericon);
-        skycons.play();
+        
 
         //Set Variables for Forecast
         
-        /* var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].icon, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
-        var oneDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[2].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[2].icon, currentInfo[1].forecast.simpleforecast.forecastday[2].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[2].low.fahrenheit]
-        var twoDayAfterWeather = [currentInfo[1].forecast.simpleforecast.forecastday[3].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[3].icon, currentInfo[1].forecast.simpleforecast.forecastday[3].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[3].low.fahrenheit]
+        var tomorrowsWeather = [currentInfo[1].day1_day, currentInfo[1].day1_icon, currentInfo[1].day1_high, currentInfo[1].day1_low]
+        var oneDayAfterWeather = [currentInfo[1].day2_day, currentInfo[1].day2_icon, currentInfo[1].day2_high, currentInfo[1].day2_low]
+        var twoDayAfterWeather = [currentInfo[1].day3_day, currentInfo[1].day3_icon, currentInfo[1].day3_high, currentInfo[1].day3_low]
   
         //Update Forecast 
-        forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-32 wu-' + tomorrowsWeather[1] + '"></i>' + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
-        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-32 wu-' + oneDayAfterWeather[1] + '"></i>'  + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
-        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + '<i style="display:inline-block;" class="wu wu-white wu-32 wu-' + twoDayAfterWeather[1] + '"></i>'  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
-       */
+        forecastDiv.innerHTML = '<p>' + tomorrowsWeather[0] + '&nbsp; &nbsp;' + '<canvas style="display:inline-block;" id="icon2" width="40" height="40"></canvas>' + '&nbsp;&nbsp; &uarr; ' + tomorrowsWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + tomorrowsWeather[3] + '&#176; </p>';
+        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + oneDayAfterWeather[0] + '&nbsp; &nbsp;' + '<canvas style="display:inline-block;" id="icon3" width="40" height="40"></canvas>' + '&nbsp;&nbsp; &uarr; ' + oneDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + oneDayAfterWeather[3] + '&#176; </p>');
+        forecastDiv.insertAdjacentHTML('beforeend', '<p>' + twoDayAfterWeather[0] + '&nbsp; &nbsp;' + '<canvas style="display:inline-block;" id="icon4" width="40" height="40"></canvas>'  + '&nbsp;&nbsp; &uarr; ' + twoDayAfterWeather[2] + '&#176; ' + ' | ' + ' &darr; ' + twoDayAfterWeather[3] + '&#176; </p>');
+
+        // Add forecast icons
+        skycons.add("icon2", tomorrowsWeather[1]);
+        skycons.add("icon3", oneDayAfterWeather[1]);
+        skycons.add("icon4", twoDayAfterWeather[1]);
+        skycons.play();
+
 }
 
 function loadNews() {
