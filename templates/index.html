@@ -10,9 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <link href="../static/styles.css" rel="stylesheet">
-    
-
-
+    <script src="../static/skycons.js"></script>
   </head>
   <body>
 
@@ -93,13 +91,19 @@ function displayWeather(currentInfo) {
         var currentSummary = currentInfo[0].summary;
         var feelsLike = parseInt(currentInfo[0].feels_like);
         var todaysHighLow = '&uarr; ' + parseInt(currentInfo[1].todays_high) + '&#176; ' + ' | ' + ' &darr; ' + parseInt(currentInfo[1].todays_low) + '&#176; ';
+
+        var skycons = new Skycons({"color": "white", "resizeClear": true})
         
         //Update Current Weather
-        currentWeatherDiv.innerHTML = '<p id="currentSummary"> ' + currentSummary + '</p>';
-        currentWeatherDiv.insertAdjacentHTML('beforeend', '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp;</div>');
+        currentWeatherDiv.innerHTML = '<div><p id="currentTemp" style="display:inline-block; margin-bottom: 20px;">' + currentTemp + '&#176;<sup>F</sup></p>&nbsp;&nbsp; &nbsp;<canvas style="display:inline-block;" id="icon1" width="60" height="60"></canvas></div>';
+        currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="currentSummary"> ' + currentSummary + '</p>');
         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="feelsLike"> Feels like: ' + feelsLike + '&#176;</p>');
         currentWeatherDiv.insertAdjacentHTML('beforeend', '<p id="todaysHighLow">' + todaysHighLow + '</p>');
- 
+
+        // Add the Current Conditions icon
+        skycons.add("icon1", currentWeathericon);
+        skycons.play();
+
         //Set Variables for Forecast
         
         /* var tomorrowsWeather = [currentInfo[1].forecast.simpleforecast.forecastday[1].date.weekday, currentInfo[1].forecast.simpleforecast.forecastday[1].icon, currentInfo[1].forecast.simpleforecast.forecastday[1].high.fahrenheit, currentInfo[1].forecast.simpleforecast.forecastday[1].low.fahrenheit]
