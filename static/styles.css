@@ -14,7 +14,7 @@ body {
 
 /**** Weather Area *****/
 #currentSummary {
-  font-size: 22px;
+  font-size: 24px;
   margin: 10px 0 2px 8px;
   padding: 0;
 }
@@ -45,7 +45,7 @@ body {
 
 #forecastArea p {
   margin: 1px 0 4px 4px;
-  font-size: 19px;
+  font-size: 22px;
 }
 
 sup {
