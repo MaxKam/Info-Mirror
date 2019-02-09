@@ -33,7 +33,25 @@
     </div>
 
     <div id="newsArea">
-      
+    </div>
+
+    <div id="configArea">
+      <button type="button" id="configButton">&#9947</button>
+    </div>
+
+    <div id="optionsWindow">
+      <h2 style="margin: 8px 0 4px 4px;">Options:</h2>
+      <div style="margin-left: 10px;">
+          <h3 style="margin: 5px 0 5px 0;">Coordinates</h3>
+          <p style="margin: 1px 0 4px 0;">Please enter coordinates for weather information</p>
+          <label for="latitude_input">Latitude:</label><br />
+          <input type="text" id="latitude_input" name="latitude_input" placeholder="1234"><br />
+          <label for="latitude_input">Longitude:</label><br />
+          <input type="text" id="longitude_input" name="longitude_input" placeholder="5678"><br />
+    
+          <button type="submit" onclick="" id="submitBtn">Submit</button>
+          <button type="button" id="closeOptionsBtn">Close</button>
+      </div>
     </div>
 
     <script>
@@ -146,6 +164,18 @@ function displayNews(currentInfo) {
 
         newsDiv.insertAdjacentHTML('beforeend', '<div><h2>' + (j + 1) + '. ' + currentNewsStory[0] + '</h2>' + '<p>' + currentNewsStory[1] + '</p></div>')
     }
+}
+
+var optionsWindow = document.getElementById('optionsWindow');
+var configButton = document.getElementById("configButton");
+var closeOptionsBtn = document.getElementById("closeOptionsBtn");
+
+configButton.onclick = function() {
+  optionsWindow.style.display = "block";
+}
+
+closeOptionsBtn.onclick = function() {
+  optionsWindow.style.display = "none";
 }
 
 updateTime();
