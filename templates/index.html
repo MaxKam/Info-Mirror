@@ -45,11 +45,11 @@
           <h3 style="margin: 5px 0 5px 0;">Coordinates</h3>
           <p style="margin: 1px 0 4px 0;">Please enter coordinates for weather information</p>
           <label for="latitude_input">Latitude:</label><br />
-          <input type="text" id="latitude_input" name="latitude_input" placeholder="1234"><br />
+          <input required type="text" id="latitude_input" name="latitude_input" placeholder="1234"><br />
           <label for="latitude_input">Longitude:</label><br />
-          <input type="text" id="longitude_input" name="longitude_input" placeholder="5678"><br />
+          <input required type="text" id="longitude_input" name="longitude_input" placeholder="5678"><br />
     
-          <button type="submit" onclick="" id="submitBtn">Submit</button>
+          <button type="button onclick="saveCoordinates" id="submitBtn">Submit</button>
           <button type="button" id="closeOptionsBtn">Close</button>
       </div>
     </div>
@@ -88,15 +88,21 @@ function updateDate() {
 
 
 function loadWeather() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  if (document.cookie.indexOf('lat') == -1 || document.cookie.indexOf('long') == -1) {
+    optionsWindow.style.display = "block";
+    return;
+  }
+  else {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           tempData = JSON.parse(this.responseText);
           displayWeather(tempData);
       }
     };
-  xhttp.open("GET", "/weather", true);
-  xhttp.send();
+    xhttp.open("GET", "/weather", true);
+    xhttp.send();
+  }
 }
 
 function displayWeather(currentInfo) {
@@ -166,9 +172,14 @@ function displayNews(currentInfo) {
     }
 }
 
+
+
 var optionsWindow = document.getElementById('optionsWindow');
 var configButton = document.getElementById("configButton");
+var submitButton = document.getElementById("submitBtn")
 var closeOptionsBtn = document.getElementById("closeOptionsBtn");
+var lat_input = document.getElementById("latitude_input");
+var long_input = document.getElementById("longitude_input");
 
 configButton.onclick = function() {
   optionsWindow.style.display = "block";
@@ -178,6 +189,34 @@ closeOptionsBtn.onclick = function() {
   optionsWindow.style.display = "none";
 }
 
+submitBtn.onclick = function() {
+  saveCoordinates();
+}
+
+
+function putCookie(lat, long) {
+    var now = new Date();
+    now.setMonth( now.getMonth() + 1 );
+
+    document.cookie = "lat = " + lat + "; expires = " + now.toUTCString() + ";";
+    document.cookie = "long = " + long + "; expires = " + now.toUTCString() + ";";
+}
+
+function saveCoordinates() {
+    var lat_input = document.getElementById("latitude_input");
+    var long_input = document.getElementById("longitude_input");
+
+    if (lat_input.value == "" || long_input.value == "") {
+      return;
+    }
+    else {
+      putCookie(lat_input.value, long_input.value);
+      optionsWindow.style.display = "none";
+      loadWeather();
+    }
+}
+
+
 updateTime();
 updateDate();
 
@@ -185,7 +224,7 @@ setInterval(updateTime, 10000);
 setInterval(updateDate, 600000);
 
 loadWeather();
-setInterval(loadWeather, 600000);
+setInterval(loadWeather, 800000);
 
 loadNews();
 setInterval(loadNews, 900000);
