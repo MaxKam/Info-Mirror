@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from configparser import ConfigParser
 from get_weather import WeatherData
 from get_news import NewsData
@@ -13,10 +13,8 @@ CORS(app)
 WEATHER_API_KEY = config.get("APP_SETTINGS", "weather_api_key")
 NEWS_API_KEY = config.get("APP_SETTINGS", "news_api_key")
 NEWS_API_URL = config.get("APP_SETTINGS", "news_api_url")
-LATITUDE = config.get("APP_SETTINGS", "latitude")
-LONGITUDE = config.get("APP_SETTINGS", "longitude")
 
-current_weather = WeatherData(WEATHER_API_KEY, LATITUDE, LONGITUDE)
+current_weather = WeatherData(WEATHER_API_KEY)
 current_news = NewsData(NEWS_API_KEY, NEWS_API_URL)
 
 @app.route("/")
@@ -25,7 +23,8 @@ def index():
 
 @app.route("/weather")
 def weather():
-    return jsonify(current_weather.get_weather())
+    cookie_data = request.cookies
+    return jsonify(current_weather.get_weather(cookie_data["lat"], cookie_data["long"]))
 
 @app.route("/news")
 def TOP_NEWS():
