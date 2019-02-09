@@ -3,15 +3,15 @@ import datetime
 
 class WeatherData:
 
-    def __init__(self, api_key, latitude, longitude):
+    def __init__(self, api_key):
         self.api_key = api_key
+
+    def get_weather(self, latitude, longitude):
+        weather_reply = []
         self.latitude = latitude
         self.longitude = longitude
         self.request_url = 'https://api.darksky.net/forecast/%s/%s,%s?exclude=minutely,hourly,flags' \
             % (self.api_key, self.latitude, self.longitude )
-
-    def get_weather(self):
-        weather_reply = []
 
         conditions_request = requests.get(self.request_url)
         if (conditions_request.status_code == 200):
