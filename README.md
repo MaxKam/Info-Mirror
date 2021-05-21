@@ -4,6 +4,4 @@ Inspired by [MagicMirror2](https://github.com/MichMich/MagicMirror) and [Smart-M
 
 Weather data and forecast provided by [OpenWeatherMap API](https://home.openweathermap.org/api_keys).
 
-I'm using the free tier for both API's. 
-
 
